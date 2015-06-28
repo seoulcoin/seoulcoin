@@ -166,7 +166,7 @@ public:
          *   vMerkleTree: 4a5e1e
          */
         //const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
-        const char* pszTimestamp = "The Times 23/Jun/2015 Jaemyong, Mayor of Sungnam city announced new welfare using coins.";//CHOI_DEBUG
+        const char* pszTimestamp = "The Times 28/Jun/2015 Jaemyong, Mayor of Sungnam city announced new welfare using coins.";//CHOI_DEBUG
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -179,11 +179,11 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         //genesis.nTime    = 1231006505;
-        genesis.nTime    = 1434986409; //CHOI_DEBUG
+        genesis.nTime    = 1435495970; //CHOI_DEBUG
         genesis.nBits    = 0x1e0ffff0;
         //genesis.nBits    = 0x1effffff; //CHOI_DEBUG
         //genesis.nNonce   = 2083236893;
-        genesis.nNonce   = 1246650;//CHOI_DEBUG 13185289
+        genesis.nNonce   = 0;//CHOI_DEBUG 13185289
 
         hashGenesisBlock = genesis.GetHash();
 	printf("genesis.hashMerkleRoot[%s]\n", genesis.hashMerkleRoot.ToString().c_str());
@@ -201,7 +201,7 @@ public:
         vSeeds.push_back(CDNSSeedData("bitcoinstats.com", "seed.bitcoinstats.com"));
         vSeeds.push_back(CDNSSeedData("xf2.org", "bitseed.xf2.org"));
 */
-        vSeeds.push_back(CDNSSeedData("113.10.63.124", "113.10.63.124"));
+        //vSeeds.push_back(CDNSSeedData("113.10.63.124", "113.10.63.124"));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(0);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(5);
@@ -254,9 +254,9 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         //genesis.nTime = 1296688602;
-        genesis.nTime = 1434986409;//CHOI_DEBUG
+        genesis.nTime = 1435495970;//CHOI_DEBUG
         //genesis.nNonce = 414098458;
-        genesis.nNonce = 1246650; //CHOI_DEBUG
+        genesis.nNonce = 0; //CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
         assert(hashGenesisBlock == uint256("0x00000fe0559698a393622b0527ca44716ce7a6bcf4e7f86977e9ee870a7f9f3a"));
@@ -269,7 +269,7 @@ public:
         vSeeds.push_back(CDNSSeedData("bluematt.me", "testnet-seed.bluematt.me"));
         vSeeds.push_back(CDNSSeedData("bitcoin.schildbach.de", "testnet-seed.bitcoin.schildbach.de"));
 */
-        vSeeds.push_back(CDNSSeedData("113.10.63.124", "113.10.63.124")); //CHOI_DEBUG
+        //vSeeds.push_back(CDNSSeedData("113.10.63.124", "113.10.63.124")); //CHOI_DEBUG
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
@@ -317,11 +317,11 @@ public:
         nTargetSpacing = 1 * 60; //CHOI_DEBUG
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         //genesis.nTime = 1296688602;
-        genesis.nTime = 1434986409;//CHOI_DEBUG
+        genesis.nTime = 1435495970;//CHOI_DEBUG
         //genesis.nBits = 0x207fffff;
         genesis.nBits = 0x1effffff;
         //genesis.nNonce = 13185280;
-        genesis.nNonce = 32204;//CHOI_DEBUG
+        genesis.nNonce = 0;//CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
         //nDefaultPort = 18444;
         nDefaultPort = 37774;//CHOI_DEBUG
