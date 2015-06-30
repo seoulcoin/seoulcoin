@@ -11,6 +11,8 @@
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread.hpp>
+#include <boost/date_time/local_time_adjustor.hpp>
+#include <boost/date_time/c_local_time_adjustor.hpp>
 
 using namespace std;
 
@@ -58,12 +60,21 @@ void MilliSleep(int64_t n)
 #endif
 }
 
+boost::posix_time::ptime local_ptime_from_utc_time_t(std::time_t const t)
+{
+    using boost::date_time::c_local_adjustor;
+    using boost::posix_time::from_time_t;
+    using boost::posix_time::ptime;
+    return c_local_adjustor<ptime>::utc_to_local(from_time_t(t));
+}
+
 std::string DateTimeStrFormat(const char* pszFormat, int64_t nTime)
 {
     // std::locale takes ownership of the pointer
     std::locale loc(std::locale::classic(), new boost::posix_time::time_facet(pszFormat));
     std::stringstream ss;
     ss.imbue(loc);
-    ss << boost::posix_time::from_time_t(nTime);
+    //ss << boost::posix_time::from_time_t(nTime); //CHOI_DEBUG
+    ss << local_ptime_from_utc_time_t(nTime);
     return ss.str();
 }

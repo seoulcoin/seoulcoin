@@ -1223,7 +1223,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 {
     //CAmount nSubsidy = 50 * COIN;
-    CAmount nSubsidy = 100000000 * COIN; //CHOI_DEBUG 100회 동안 백억씩 발행 
+    CAmount nSubsidy = 10000000000 * COIN; //CHOI_DEBUG add 10bil SLC by 100 times ==>  1000bil SLC
     int halvings = nHeight / Params().SubsidyHalvingInterval();
 
     // Force block reward to zero when right shift is undefined.

@@ -145,13 +145,13 @@ public:
         nDefaultPort = 47773;//CHOI_DEBUG
         //bnProofOfWorkLimit = ~uint256(0) >> 32;
         bnProofOfWorkLimit = ~uint256(0) >> 20; //CHOI_DEBUG
-        nSubsidyHalvingInterval = 210000; //CHOI_DEBUG don't touch
+        nSubsidyHalvingInterval = 210000; //CHOI_DEBUG don't touch.  10bil*100 ==> 1000bil SLC (total SLC)
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         //nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        nTargetTimespan = 7 * 24 * 60 * 60; // two weeks -> 1 week CHOI_DEBUG
+        nTargetTimespan = 2 * 24 * 60 * 60; // two weeks -> 2 days CHOI_DEBUG
         //nTargetSpacing = 10 * 60;
         nTargetSpacing = 1 * 60; //CHOI_DEBUG
 
