@@ -144,7 +144,7 @@ public:
         //nDefaultPort = 8333;
         nDefaultPort = 47773;//CHOI_DEBUG
         //bnProofOfWorkLimit = ~uint256(0) >> 32;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; //CHOI_DEBUG
+        bnProofOfWorkLimit = ~uint256(0) >> 24; //CHOI_DEBUG
         nSubsidyHalvingInterval = 210000; //CHOI_DEBUG don't touch.  10bil*100 ==> 1000bil SLC (total SLC)
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
@@ -166,7 +166,7 @@ public:
          *   vMerkleTree: 4a5e1e
          */
         //const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
-        const char* pszTimestamp = "The Times 28/Jun/2015 Jaemyong, Mayor of Sungnam city announced new welfare using coins.";//CHOI_DEBUG
+        const char* pszTimestamp = "The Times 2/Jul/2015 Jaemyong, Mayor of Sungnam city announced new welfare using coins.";//CHOI_DEBUG
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -179,21 +179,21 @@ public:
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         //genesis.nTime    = 1231006505;
-        genesis.nTime    = 1435495970; //CHOI_DEBUG
-        genesis.nBits    = 0x1e0ffff0;
-        //genesis.nBits    = 0x1effffff; //CHOI_DEBUG
-        //genesis.nNonce   = 2083236893;
-        genesis.nNonce   = 1308328;//CHOI_DEBUG 13185289
+        genesis.nTime    = 1435763953; //CHOI_DEBUG
+        //genesis.nBits    = 0x1e0ffff0;
+        genesis.nBits    = 0x1e00ffff; //CHOI_DEBUG
+        //genesis.nNonce   = 0;
+        genesis.nNonce   = 5816520;//CHOI_DEBUG 13185289
 
         hashGenesisBlock = genesis.GetHash();
 	printf("genesis.hashMerkleRoot[%s]\n", genesis.hashMerkleRoot.ToString().c_str());
         //assert(genesis.hashMerkleRoot == uint256("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
-        assert(genesis.hashMerkleRoot == uint256("0xdae6a9e2564cd197e1fa6d22f078b09384add455958712d52026a81a8ca7be95"));//CHOI_DEBUG
+        assert(genesis.hashMerkleRoot == uint256("0x17e5f7210b47e65243030cc4547c0b45e0e0129903f6d37cb912fa13beea9c2c"));//CHOI_DEBUG
         //assert(hashGenesisBlock == uint256("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        if(hashGenesisBlock != uint256("0x0000081efc1a22f8ea7391d040e1ddf68b565e985d811c4b62db9eec263fe30e")) //CHOI_DEBUG
+        if(hashGenesisBlock != uint256("0x0000007466ee19e936df5a6cb02af73bdf911547dd28d7589cbf0200661eaf62")) //CHOI_DEBUG
 		MineGenesis(genesis);
 	printf("hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x0000081efc1a22f8ea7391d040e1ddf68b565e985d811c4b62db9eec263fe30e"));
+        assert(hashGenesisBlock == uint256("0x0000007466ee19e936df5a6cb02af73bdf911547dd28d7589cbf0200661eaf62"));
 /*
         vSeeds.push_back(CDNSSeedData("bitcoin.sipa.be", "seed.bitcoin.sipa.be"));
         vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me"));
@@ -248,18 +248,18 @@ public:
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         //nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetTimespan = 7 * 24 * 60 * 60; //! 1 weeks CHOI_DEBUG
+        nTargetTimespan = 2 * 24 * 60 * 60; //! 2days CHOI_DEBUG
         //nTargetSpacing = 10 * 60;
         nTargetSpacing = 1 * 60; //CHOI_DEBUG
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         //genesis.nTime = 1296688602;
-        genesis.nTime = 1435495970;//CHOI_DEBUG
+        genesis.nTime = 1435763953;//CHOI_DEBUG
         //genesis.nNonce = 414098458;
-        genesis.nNonce = 1308328; //CHOI_DEBUG
+        genesis.nNonce = 5816520; //CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x0000081efc1a22f8ea7391d040e1ddf68b565e985d811c4b62db9eec263fe30e"));
+        assert(hashGenesisBlock == uint256("0x0000007466ee19e936df5a6cb02af73bdf911547dd28d7589cbf0200661eaf62"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -312,23 +312,23 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
         //nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetTimespan = 7 * 24 * 60 * 60; //! 1 weeks CHOI_DEBUG
+        nTargetTimespan = 2 * 24 * 60 * 60; //! 2 days CHOI_DEBUG
         //nTargetSpacing = 10 * 60;
         nTargetSpacing = 1 * 60; //CHOI_DEBUG
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         //genesis.nTime = 1296688602;
-        genesis.nTime = 1435495970;//CHOI_DEBUG
+        genesis.nTime = 1435763953;//CHOI_DEBUG
         //genesis.nBits = 0x207fffff;
-        genesis.nBits = 0x1e0ffff0;
+        genesis.nBits = 0x1e00ffff;
         //genesis.nNonce = 13185280;
-        genesis.nNonce = 1308328;//CHOI_DEBUG
+        genesis.nNonce = 5816520;//CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
         //nDefaultPort = 18444;
         nDefaultPort = 37774;//CHOI_DEBUG
-        //if(hashGenesisBlock != uint256("0x0000004b5e36912880ffb24e7407d8eb21d9e138b57ec44a954507138127fd3d")) //CHOI_DEBUG
-	//	MineGenesis(genesis);
+        if(hashGenesisBlock != uint256("0x0000007466ee19e936df5a6cb02af73bdf911547dd28d7589cbf0200661eaf62")) //CHOI_DEBUG
+		MineGenesis(genesis);
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x0000081efc1a22f8ea7391d040e1ddf68b565e985d811c4b62db9eec263fe30e"));
+        assert(hashGenesisBlock == uint256("0x0000007466ee19e936df5a6cb02af73bdf911547dd28d7589cbf0200661eaf62"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
