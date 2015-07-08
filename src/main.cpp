@@ -1223,7 +1223,13 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 {
     //CAmount nSubsidy = 50 * COIN;
-    CAmount nSubsidy = 10000000000 * COIN; //CHOI_DEBUG add 10bil SLC by 100 times ==>  1000bil SLC
+    //CHOI_DEBUG add 10bn SLC by 100 times ==>  1000bn SLC
+    if (nHeight < 100)
+    	return 10000000000; // 1000bn =   100*10bn
+    else
+    	return nFees;
+    /*
+     * CHOI_DEBUG: no need of fees on mining ==> premining
     int halvings = nHeight / Params().SubsidyHalvingInterval();
 
     // Force block reward to zero when right shift is undefined.
@@ -1234,6 +1240,7 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
     nSubsidy >>= halvings;
 
     return nSubsidy + nFees;
+    */
 }
 
 bool IsInitialBlockDownload()
