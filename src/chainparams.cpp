@@ -272,6 +272,9 @@ public:
         vSeeds.push_back(CDNSSeedData("bitcoin.schildbach.de", "testnet-seed.bitcoin.schildbach.de"));
 */
         //vSeeds.push_back(CDNSSeedData("113.10.63.124", "113.10.63.124")); //CHOI_DEBUG
+        vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test1.seoulcoin.info"));
+        //vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test2.seoulcoin.info"));
+        //vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test3.seoulcoin.info"));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(111);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(196);
