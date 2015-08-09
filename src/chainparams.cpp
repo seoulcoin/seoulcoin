@@ -14,6 +14,7 @@
 #include <boost/assign/list_of.hpp>
 
 #include "stdio.h"
+#include "seoulcoin.h"
 
 using namespace std;
 using namespace boost::assign;
@@ -56,7 +57,8 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        (     0, uint256("0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074"))
+        (     0, uint256((char*)HASH_GENESIS_BLOCK))
+		(  4000, uint256("0x00000039715f22337bf754bc0657f0d691e606d09fcf364d4d773eddb38f7e56"))
 /*
         ( 11111, uint256("0x0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d"))
         ( 33333, uint256("0x000000002dd5588a74784eaa7ab0507a18ad16a236e7b1ce69f00d7ddfb5d0a6"))
@@ -142,7 +144,7 @@ public:
         pchMessageStart[3] = 0xd9;
         vAlertPubKey = ParseHex("04fc9702847840aaf195de8442ebecedf5b095cdbb9bc716bda9110971b28a49e0ead8564ff0db22209e0374782c093bb899692d524e9d6a6956e7c5ecbcd68284");
         //nDefaultPort = 8333;
-        nDefaultPort = 47773;//CHOI_DEBUG
+        nDefaultPort = MAINNET_P2P_PORT;//CHOI_DEBUG
         //bnProofOfWorkLimit = ~uint256(0) >> 32;
         bnProofOfWorkLimit = ~uint256(0) >> 24; //CHOI_DEBUG
         nSubsidyHalvingInterval = 210000; //CHOI_DEBUG don't touch.  10bil*100 ==> 1000bil SLC (total SLC)
@@ -151,9 +153,9 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         //nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        nTargetTimespan = 2 * 24 * 60 * 60; // two weeks -> 2 days CHOI_DEBUG
+        nTargetTimespan = TARGET_TIME_SPAN; // two weeks -> 2 days CHOI_DEBUG
         //nTargetSpacing = 10 * 60;
-        nTargetSpacing = 1 * 60; //CHOI_DEBUG
+        nTargetSpacing = TARGET_SPACE; //CHOI_DEBUG
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -166,34 +168,34 @@ public:
          *   vMerkleTree: 4a5e1e
          */
         //const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
-        const char* pszTimestamp = "The Times 9/Jul/2015 Seoulcoin held a meeting with p2pf in Seoul Bitcoin Center.";//CHOI_DEBUG
+        const char* pszTimestamp = PSZ_TIME_STAMP;//CHOI_DEBUG
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         //txNew.vout[0].nValue = 50 * COIN;
-        txNew.vout[0].nValue = 10000000000; //CHOI_DEBUG
+        txNew.vout[0].nValue = COINBASE_OUTPUT; //CHOI_DEBUG
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         //genesis.nTime    = 1231006505;
-        genesis.nTime    = 1436371815; //CHOI_DEBUG
+        genesis.nTime    = GENESIS_NTIME; //CHOI_DEBUG
         //genesis.nBits    = 0x1e0ffff0;
-        genesis.nBits    = 0x1e00ffff; //CHOI_DEBUG
+        genesis.nBits    = GENESIS_NBITS; //CHOI_DEBUG
         //genesis.nNonce   = 0;
-        genesis.nNonce   = 20110306;//CHOI_DEBUG
+        genesis.nNonce   = GENESIS_NNONCE;//CHOI_DEBUG
 
         hashGenesisBlock = genesis.GetHash();
 	printf("genesis.hashMerkleRoot[%s]\n", genesis.hashMerkleRoot.ToString().c_str());
         //assert(genesis.hashMerkleRoot == uint256("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
-        assert(genesis.hashMerkleRoot == uint256("0x158432c68bfa12548aa3882d87c01cc9d3c3db5ea565de6f95693fe4aa7e079e"));//CHOI_DEBUG
+        assert(genesis.hashMerkleRoot == uint256(HASH_MERKLE_ROOT));//CHOI_DEBUG
         //assert(hashGenesisBlock == uint256("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        if(hashGenesisBlock != uint256("0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074")) //CHOI_DEBUG
+        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK))) //CHOI_DEBUG
 		MineGenesis(genesis);
 	printf("hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074"));
+        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK)));
 /*
         vSeeds.push_back(CDNSSeedData("bitcoin.sipa.be", "seed.bitcoin.sipa.be"));
         vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me"));
@@ -201,9 +203,9 @@ public:
         vSeeds.push_back(CDNSSeedData("bitcoinstats.com", "seed.bitcoinstats.com"));
         vSeeds.push_back(CDNSSeedData("xf2.org", "bitseed.xf2.org"));
 */
-        vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test1.seoulcoin.info"));
-        vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test2.seoulcoin.info"));
-        vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test3.seoulcoin.info"));
+        vSeeds.push_back(CDNSSeedData(SEED_DOMAIN_NAME, SEOULCOIN_DOMAIN_NAME_1));
+        vSeeds.push_back(CDNSSeedData(SEED_DOMAIN_NAME, SEOULCOIN_DOMAIN_NAME_2));
+        vSeeds.push_back(CDNSSeedData(SEED_DOMAIN_NAME, SEOULCOIN_DOMAIN_NAME_3));
 
         base58Prefixes[PUBKEY_ADDRESS] = list_of(0);
         base58Prefixes[SCRIPT_ADDRESS] = list_of(5);
@@ -244,24 +246,24 @@ public:
         pchMessageStart[3] = 0x07;
         vAlertPubKey = ParseHex("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
         //nDefaultPort = 18333;
-        nDefaultPort = 37773; //CHOI_DEBUG
+        nDefaultPort = TESTNET_P2P_PORT; //CHOI_DEBUG
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         //nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetTimespan = 2 * 24 * 60 * 60; //! 2days CHOI_DEBUG
+        nTargetTimespan = TARGET_TIME_SPAN; //! 2days CHOI_DEBUG
         //nTargetSpacing = 10 * 60;
-        nTargetSpacing = 1 * 60; //CHOI_DEBUG
+        nTargetSpacing = TARGET_SPACE; //CHOI_DEBUG
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         //genesis.nTime = 1296688602;
-        genesis.nTime = 1436371815;//CHOI_DEBUG
+        genesis.nTime = GENESIS_NTIME;//CHOI_DEBUG
         //genesis.nNonce = 414098458;
-        genesis.nNonce = 20110306; //CHOI_DEBUG
+        genesis.nNonce = GENESIS_NNONCE; //CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074"));
+        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK)));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -272,7 +274,7 @@ public:
         vSeeds.push_back(CDNSSeedData("bitcoin.schildbach.de", "testnet-seed.bitcoin.schildbach.de"));
 */
         //vSeeds.push_back(CDNSSeedData("113.10.63.124", "113.10.63.124")); //CHOI_DEBUG
-        vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test1.seoulcoin.info"));
+        vSeeds.push_back(CDNSSeedData(SEED_DOMAIN_NAME, SEOULCOIN_DOMAIN_NAME_1));
         //vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test2.seoulcoin.info"));
         //vSeeds.push_back(CDNSSeedData("seoulcoin.info", "test3.seoulcoin.info"));
 
@@ -317,23 +319,23 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
         //nTargetTimespan = 14 * 24 * 60 * 60; //! two weeks
-        nTargetTimespan = 2 * 24 * 60 * 60; //! 2 days CHOI_DEBUG
+        nTargetTimespan = TARGET_TIME_SPAN; //! 2 days CHOI_DEBUG
         //nTargetSpacing = 10 * 60;
-        nTargetSpacing = 1 * 60; //CHOI_DEBUG
+        nTargetSpacing = TARGET_SPACE; //CHOI_DEBUG
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         //genesis.nTime = 1296688602;
-        genesis.nTime = 1436371815;//CHOI_DEBUG
+        genesis.nTime = GENESIS_NTIME;//CHOI_DEBUG
         //genesis.nBits = 0x207fffff;
-        genesis.nBits = 0x1e00ffff;
+        genesis.nBits = GENESIS_NBITS;
         //genesis.nNonce = 13185280;
-        genesis.nNonce = 20110306;//CHOI_DEBUG
+        genesis.nNonce = GENESIS_NNONCE;//CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
         //nDefaultPort = 18444;
-        nDefaultPort = 37774;//CHOI_DEBUG
-        if(hashGenesisBlock != uint256("0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074")) //CHOI_DEBUG
+        nDefaultPort = REGTEST_P2P_PORT;//CHOI_DEBUG
+        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK))) //CHOI_DEBUG
 		MineGenesis(genesis);
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256("0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074"));
+        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK)));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
@@ -362,7 +364,7 @@ public:
         networkID = CBaseChainParams::UNITTEST;
         strNetworkID = "unittest";
         //nDefaultPort = 18445;
-        nDefaultPort = 37775;//CHOI_DEBUG
+        nDefaultPort = UNITTEST_P2P_PORT;//CHOI_DEBUG
         vFixedSeeds.clear(); //! Unit test mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Unit test mode doesn't have any DNS seeds.
 

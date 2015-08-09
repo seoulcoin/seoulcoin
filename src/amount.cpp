@@ -21,7 +21,13 @@ CAmount CFeeRate::GetFee(size_t nSize) const
 
     if (nFee == 0 && nSatoshisPerK > 0)
         nFee = nSatoshisPerK;
-
+#ifdef SEOULCOIN
+    /* fixed fee =  50
+     * if in > 5000 fee = 50
+     * if in < 5000 fee = 10
+     * or fee = (price / 1000) * 5  ~~~ 0.5%
+     */
+#endif
     return nFee;
 }
 

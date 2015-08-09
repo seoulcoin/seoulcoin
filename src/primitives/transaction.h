@@ -144,7 +144,9 @@ public:
         // need a CTxIn of at least 148 bytes to spend:
         // so dust is a txout less than 546 satoshis 
         // with default minRelayTxFee.
-        size_t nSize = GetSerializeSize(SER_DISK,0)+148u;
+
+    	//TODO: CHOI_DEBUG
+    	size_t nSize = GetSerializeSize(SER_DISK,0)+148u;
         return (nValue < 3*minRelayTxFee.GetFee(nSize));
     }
 

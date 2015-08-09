@@ -6,7 +6,7 @@
 #include "chainparamsbase.h"
 
 #include "util.h"
-
+#include "seoulcoin.h"
 #include <assert.h>
 
 #include <boost/assign/list_of.hpp>
@@ -22,8 +22,7 @@ public:
     CBaseMainParams()
     {
         networkID = CBaseChainParams::MAIN;
-        //nRPCPort = 8332;
-        nRPCPort = 47772;//CHOI_DEBUG
+        nRPCPort = MAINNET_RPC_PORT;//CHOI_DEBUG
     }
 };
 static CBaseMainParams mainParams;
@@ -37,8 +36,7 @@ public:
     CBaseTestNetParams()
     {
         networkID = CBaseChainParams::TESTNET;
-        //nRPCPort = 18332;
-        nRPCPort = 37772; //CHOI_DEBUG
+        nRPCPort = TESTNET_RPC_PORT; //CHOI_DEBUG
         strDataDir = "testnet3";
     }
 };

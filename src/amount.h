@@ -10,17 +10,15 @@
 
 #include <stdlib.h>
 #include <string>
+#include "seoulcoin.h"
 
 typedef int64_t CAmount;
 
-//static const CAmount COIN = 100000000;
-static const CAmount COIN = 1; //CHOI_DEBUG 1원
-//static const CAmount CENT = 1000000;
-static const CAmount CENT = 100;
+static const CAmount COIN = COIN_VALUE;
+static const CAmount CENT = CENT_VALUE;
 
 /** No amount larger than this (in satoshi) is valid */
-//static const CAmount MAX_MONEY = 21000000 * COIN;
-static const CAmount MAX_MONEY = 1000000000000;//1조원!!! CHOI_DEBUG
+static const CAmount MAX_MONEY = MAX_MONEY_VALUE;
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
 /** Type-safe wrapper class to for fee rates

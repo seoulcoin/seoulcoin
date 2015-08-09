@@ -55,6 +55,7 @@ unsigned int nCoinCacheSize = 5000;
 
 
 /** Fees smaller than this (in satoshi) are considered zero fee (for relaying and mining) */
+//TODO: 1000 => ?
 CFeeRate minRelayTxFee = CFeeRate(1000);
 
 CTxMemPool mempool(::minRelayTxFee);
@@ -1224,8 +1225,8 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 {
     //CAmount nSubsidy = 50 * COIN;
     //CHOI_DEBUG add 10bn SLC by 100 times ==>  1000bn SLC
-    if (nHeight < 100)
-    	return 10000000000; // 1000bn =   100*10bn
+    if (nHeight <= 100)
+    	return BLOCK_VALUE;
     else
     	return nFees;
     /*

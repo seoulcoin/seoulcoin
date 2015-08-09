@@ -39,11 +39,9 @@ extern bool fPayAtLeastCustomFee;
 //! -paytxfee default
 static const CAmount DEFAULT_TRANSACTION_FEE = 0;
 //! -paytxfee will warn if called with a higher fee than this amount (in satoshis) per KB
-//static const CAmount nHighTransactionFeeWarning = 0.01 * COIN;
-static const CAmount nHighTransactionFeeWarning = 10 * COIN; //CHOI_DEBUG
+static const CAmount nHighTransactionFeeWarning = 0.01 * COIN; // TODO: CHOI_DEBUG
 //! -maxtxfee default
-//static const CAmount DEFAULT_TRANSACTION_MAXFEE = 0.1 * COIN;
-static const CAmount DEFAULT_TRANSACTION_MAXFEE = 50 * COIN;  //CHOI_DEBUG
+static const CAmount DEFAULT_TRANSACTION_MAXFEE = 0.1 * COIN;// TODO: CHOI_DEBUG
 //! -maxtxfee will warn if called with a higher fee than this amount (in satoshis)
 static const CAmount nHighTransactionMaxFeeWarning = 100 * nHighTransactionFeeWarning;
 //! Largest (in bytes) free transaction we're willing to create

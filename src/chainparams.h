@@ -16,6 +16,13 @@
 
 typedef unsigned char MessageStartChars[MESSAGE_START_SIZE];
 
+#ifdef SEOULCOIN
+//MERKELROOT
+//PORT
+//etc...
+
+#endif //SEOULCOIN
+
 struct CDNSSeedData {
     std::string name, host;
     CDNSSeedData(const std::string &strName, const std::string &strHost) : name(strName), host(strHost) {}
