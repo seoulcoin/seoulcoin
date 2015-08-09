@@ -16,6 +16,18 @@
 
 typedef unsigned char MessageStartChars[MESSAGE_START_SIZE];
 
+/*
+ * seoulcoin def.
+ */
+#define HASH_GENESIS_BLOCK		"0x000000cabae6167f60617e0987865afcb500b8d6e6265ecf4e11c8f95d5c6074"
+#define HASH_MERKLE_ROOT        "0x70675cd1ccfecd3d9c8c1e42c244cbf2292357bb1151b5f885b2d4fa6114a327"
+#define PSZ_TIME_STAMP 			"The Times 9/Jul/2015 Seoulcoin held a meeting with p2pf in Seoul Bitcoin Center."
+#define GENESIS_NBITS 			0x1e00ffff
+#define GENESIS_NTIME 			1436371815
+#define GENESIS_NNONCE 			20110306
+#define TARGET_TIME_SPAN 		(2 * 24 * 60 * 60)  //2days  <== 14 * 24 * 60 * 60; //! two weeks
+#define TARGET_SPACE 			(1 * 60)  //10 * 60
+
 #ifdef SEOULCOIN
 //MERKELROOT
 //PORT
