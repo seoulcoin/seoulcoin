@@ -10,7 +10,14 @@
 
 #include <stdlib.h>
 #include <string>
-#include "seoulcoin.h"
+//#include "seoulcoin.h"
+
+/*
+ * seoulcoin.h config
+ */
+static const int64_t  COIN_VALUE = 100000000;
+static const int64_t  CENT_VALUE = 1000000;
+static const int64_t  MAX_MONEY_VALUE = (1000000*1000000 * COIN);
 
 typedef int64_t CAmount;
 

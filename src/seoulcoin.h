@@ -28,24 +28,18 @@
 //COIN = 100000000 satoshi; 1 satoshi = 1 won
 //total money = 10000 COIN
 //premine by 100 block * 100 COIN
-#define COINBASE_OUTPUT			(10000000000 * COIN)//10,000,000,000  //50 * COIN;
+//#define COINBASE_OUTPUT			(10000000000 * COIN)//10,000,000,000  //50 * COIN;
 
 #define SEED_DOMAIN_NAME		"seoulcoin.info"
 #define SEOULCOIN_DOMAIN_NAME_1 "test1.seoulcoin.info"
 #define SEOULCOIN_DOMAIN_NAME_2 "test2.seoulcoin.info"
 #define SEOULCOIN_DOMAIN_NAME_3 "test3.seoulcoin.info"
 
-/*
- * amount.h config
- */
-#define COIN_VALUE 				100000000
-#define CENT_VALUE				1000000
-#define MAX_MONEY_VALUE			(1000000*1000000 * COIN)
 
 /*
  * main.cpp
  */
-#define BLOCK_VALUE				(100000000*100)
+//#define BLOCK_VALUE				(100000000*100)
 
 //MERKELROOT
 //PORT
