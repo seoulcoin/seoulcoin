@@ -30,7 +30,7 @@ typedef unsigned char MessageStartChars[MESSAGE_START_SIZE];
 //COIN = 100000000 satoshi; 1 satoshi = 1 won
 //total money = 10000 COIN
 //premine by 100 block * 100 COIN
-static const int64_t COINBASE_OUTPUT =(10000000000 * COIN);//10,000,000,000  //50 * COIN;
+static const int64_t COINBASE_OUTPUT =(100000000 * COIN);//10,000,000,000  //50 * COIN;
 
 
 #ifdef SEOULCOIN

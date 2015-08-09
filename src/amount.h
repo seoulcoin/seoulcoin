@@ -17,7 +17,7 @@
  */
 static const int64_t  COIN_VALUE = 100000000;
 static const int64_t  CENT_VALUE = 1000000;
-static const int64_t  MAX_MONEY_VALUE = (1000000*1000000 * COIN);
+static const int64_t  MAX_MONEY_VALUE = (10000*1000000 * COIN_VALUE);
 
 typedef int64_t CAmount;
 
