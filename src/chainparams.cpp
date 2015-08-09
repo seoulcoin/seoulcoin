@@ -192,10 +192,10 @@ public:
         //assert(genesis.hashMerkleRoot == uint256("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
         assert(genesis.hashMerkleRoot == uint256(HASH_MERKLE_ROOT));//CHOI_DEBUG
         //assert(hashGenesisBlock == uint256("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK))) //CHOI_DEBUG
-		MineGenesis(genesis);
+        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK)) //CHOI_DEBUG
+        	MineGenesis(genesis);
 	printf("hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK)));
+        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK));
 /*
         vSeeds.push_back(CDNSSeedData("bitcoin.sipa.be", "seed.bitcoin.sipa.be"));
         vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me"));
@@ -263,7 +263,7 @@ public:
         genesis.nNonce = GENESIS_NNONCE; //CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK)));
+        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -332,10 +332,10 @@ public:
         hashGenesisBlock = genesis.GetHash();
         //nDefaultPort = 18444;
         nDefaultPort = REGTEST_P2P_PORT;//CHOI_DEBUG
-        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK))) //CHOI_DEBUG
-		MineGenesis(genesis);
+        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK)) //CHOI_DEBUG
+        	MineGenesis(genesis);
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK)));
+        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
