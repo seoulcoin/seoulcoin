@@ -52,7 +52,7 @@ struct CNodeStateStats;
 /*
  * seoulcoin.h
  */
-static const int64_t BLOCK_VALUE = (100000000*100);
+static const int64_t BLOCK_VALUE = 10000000000;
 
 /** Default for -blockmaxsize and -blockminsize, which control the range of sizes the mining code will create **/
 static const unsigned int DEFAULT_BLOCK_MAX_SIZE = 750000;
