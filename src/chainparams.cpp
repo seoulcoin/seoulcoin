@@ -26,6 +26,13 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
+const char* g_hashGenesisBlock	= "0x000000d36b5a3fa6998554fe6cf307998b5df14f406b42ba755adc467391a6c5";
+const char* g_hashMerkleRoot		= "0x7ac0debb4f141f5a4baa8e05f2e3fa73c33bf69131ed3d81a46af2eac35b0a20";
+const char* g_pszTimeStamp		= "The Times 9/Jul/2015 Seoulcoin held a meeting with p2pf in Seoul Bitcoin Center.";
+const uint32_t	g_genesisNtime	= 1436371815;
+const uint32_t	g_genesisNnonce	= 82971208;
+//#define GENESIS_NBITS 			0x1e00ffff
+
 /**
  * Main network
  */
@@ -57,7 +64,7 @@ static void convertSeed6(std::vector<CAddress> &vSeedsOut, const SeedSpec6 *data
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        (     0, uint256((char*)HASH_GENESIS_BLOCK))
+        (     0, uint256((char*)g_hashGenesisBlock))
 		(  4000, uint256("0x00000039715f22337bf754bc0657f0d691e606d09fcf364d4d773eddb38f7e56"))
 /*
         ( 11111, uint256("0x0000000069e244f73d78e8fd29ba2fd2ed618bd6fa2ee92559f542fdb26e7c1d"))
@@ -185,17 +192,17 @@ public:
         //genesis.nBits    = 0x1e0ffff0;
         genesis.nBits    = GENESIS_NBITS; //CHOI_DEBUG
         //genesis.nNonce   = 0;
-        genesis.nNonce   = GENESIS_NNONCE;//CHOI_DEBUG
+        genesis.nNonce   = g_genesisNnonce;//CHOI_DEBUG
 
         hashGenesisBlock = genesis.GetHash();
 	printf("genesis.hashMerkleRoot[%s]\n", genesis.hashMerkleRoot.ToString().c_str());
         //assert(genesis.hashMerkleRoot == uint256("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
-        assert(genesis.hashMerkleRoot == uint256(HASH_MERKLE_ROOT));//CHOI_DEBUG
+        assert(genesis.hashMerkleRoot == uint256((char*)g_hashMerkleRoot));//CHOI_DEBUG
         //assert(hashGenesisBlock == uint256("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK)) //CHOI_DEBUG
+        if(hashGenesisBlock != uint256((char*)g_hashGenesisBlock)) //CHOI_DEBUG
         	MineGenesis(genesis);
 	printf("hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK));
+        assert(hashGenesisBlock == uint256((char*)g_hashGenesisBlock));
 /*
         vSeeds.push_back(CDNSSeedData("bitcoin.sipa.be", "seed.bitcoin.sipa.be"));
         vSeeds.push_back(CDNSSeedData("bluematt.me", "dnsseed.bluematt.me"));
@@ -260,10 +267,10 @@ public:
         //genesis.nTime = 1296688602;
         genesis.nTime = GENESIS_NTIME;//CHOI_DEBUG
         //genesis.nNonce = 414098458;
-        genesis.nNonce = GENESIS_NNONCE; //CHOI_DEBUG
+        genesis.nNonce = g_genesisNnonce; //CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK));
+        assert(hashGenesisBlock == uint256((char*)g_hashGenesisBlock));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -328,14 +335,14 @@ public:
         //genesis.nBits = 0x207fffff;
         genesis.nBits = GENESIS_NBITS;
         //genesis.nNonce = 13185280;
-        genesis.nNonce = GENESIS_NNONCE;//CHOI_DEBUG
+        genesis.nNonce = g_genesisNnonce;//CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
         //nDefaultPort = 18444;
         nDefaultPort = REGTEST_P2P_PORT;//CHOI_DEBUG
-        if(hashGenesisBlock != uint256((char*)HASH_GENESIS_BLOCK)) //CHOI_DEBUG
+        if(hashGenesisBlock != uint256((char*)g_hashGenesisBlock)) //CHOI_DEBUG
         	MineGenesis(genesis);
 	printf("testnet.hashGenesisBlock[%s]\n", hashGenesisBlock.ToString().c_str());
-        assert(hashGenesisBlock == uint256((char*)HASH_GENESIS_BLOCK));
+        assert(hashGenesisBlock == uint256((char*)g_hashGenesisBlock));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
