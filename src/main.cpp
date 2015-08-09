@@ -1226,7 +1226,8 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
     //CAmount nSubsidy = 50 * COIN;
     //CHOI_DEBUG add 10bn SLC by 100 times ==>  1000bn SLC
     if (nHeight <= 100)
-    	return BLOCK_VALUE;
+    	//return BLOCK_VALUE;
+    	return 100000000 * COIN;
     else
     	return nFees;
     /*
