@@ -26,12 +26,13 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
-const char* g_hashGenesisBlock	= "0x000000d36b5a3fa6998554fe6cf307998b5df14f406b42ba755adc467391a6c5";
-const char* g_hashMerkleRoot		= "0x7ac0debb4f141f5a4baa8e05f2e3fa73c33bf69131ed3d81a46af2eac35b0a20";
-const char* g_pszTimeStamp		= "The Times 9/Jul/2015 Seoulcoin held a meeting with p2pf in Seoul Bitcoin Center.";
-const uint32_t	g_genesisNtime	= 1436371815;
-const uint32_t	g_genesisNnonce	= 82971208;
-//#define GENESIS_NBITS 			0x1e00ffff
+const char* g_hashGenesisBlock	= "0x00000002c6db9248f6bf4861cf5830ce1182534ffbef67cc9af1c460b44d08b9";
+const char* g_hashMerkleRoot	= "0x24f0e4c234b051f20500deca7cc7e87a1e8533a1de53432ec56e90e9d726b55f";
+const char* g_pszTimeStamp	= "The Times 18/Aug/2015 I built first correct merkle hash for Seoulcoin.";
+const uint32_t	g_genesisNtime	= 1439900675;
+const uint32_t	g_genesisNnonce	= 131494949;
+const int64_t 	g_coinbaseOutput =(100000000 * COIN);
+//#define GENESIS_NBITS 			0x1e00ffff  --> 503382015
 
 /**
  * Main network
@@ -175,20 +176,20 @@ public:
          *   vMerkleTree: 4a5e1e
          */
         //const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
-        const char* pszTimestamp = PSZ_TIME_STAMP;//CHOI_DEBUG
+        const char* pszTimestamp = g_pszTimeStamp;//CHOI_DEBUG
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
-        txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
+        txNew.vin[0].scriptSig = CScript() << /*486604799 */ 503382015  << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         //txNew.vout[0].nValue = 50 * COIN;
-        txNew.vout[0].nValue = COINBASE_OUTPUT; //CHOI_DEBUG
+        txNew.vout[0].nValue = g_coinbaseOutput;//CHOI_DEBUG
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
         //genesis.nTime    = 1231006505;
-        genesis.nTime    = GENESIS_NTIME; //CHOI_DEBUG
+        genesis.nTime    = g_genesisNtime; //CHOI_DEBUG
         //genesis.nBits    = 0x1e0ffff0;
         genesis.nBits    = GENESIS_NBITS; //CHOI_DEBUG
         //genesis.nNonce   = 0;
@@ -196,6 +197,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 	printf("genesis.hashMerkleRoot[%s]\n", genesis.hashMerkleRoot.ToString().c_str());
+	//printf("genesis.hashMerkleRoot[%x]\n", genesis.hashMerkleRoot);
         //assert(genesis.hashMerkleRoot == uint256("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
         assert(genesis.hashMerkleRoot == uint256((char*)g_hashMerkleRoot));//CHOI_DEBUG
         //assert(hashGenesisBlock == uint256("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
@@ -265,7 +267,7 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         //genesis.nTime = 1296688602;
-        genesis.nTime = GENESIS_NTIME;//CHOI_DEBUG
+        genesis.nTime = g_genesisNtime;//CHOI_DEBUG
         //genesis.nNonce = 414098458;
         genesis.nNonce = g_genesisNnonce; //CHOI_DEBUG
         hashGenesisBlock = genesis.GetHash();
@@ -331,7 +333,7 @@ public:
         nTargetSpacing = TARGET_SPACE; //CHOI_DEBUG
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         //genesis.nTime = 1296688602;
-        genesis.nTime = GENESIS_NTIME;//CHOI_DEBUG
+        genesis.nTime = g_genesisNtime;//CHOI_DEBUG
         //genesis.nBits = 0x207fffff;
         genesis.nBits = GENESIS_NBITS;
         //genesis.nNonce = 13185280;
